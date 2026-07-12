@@ -23,9 +23,25 @@ def test_emprestar_livro_ja_emprestado_levanta_erro():
     with pytest.raises(ValueError):
         livro.emprestar()
 
+def test_devolver_livro_emprestado():
+    livro = Livro("Teste", "Autor", "123")
+    livro.emprestar()
+    livro.devolver()
+    assert livro.disponivel is True
 
-# ── Complete os testes abaixo ─────────────────────────────────────────────
-# Voce deve escrever testes para:
-#   devolver() — livro emprestado (deve funcionar)
-#   devolver() — livro disponivel (deve levantar ValueError)
-#   __str__()  — verificar o formato da string retornada
+
+def test_devolver_livro_disponivel():
+    livro = Livro("Teste", "Autor", "123")
+    with pytest.raises(ValueError):
+        livro.devolver()
+
+
+def test_str_livro():
+    livro = Livro("Dom Casmurro", "Machado", "123")
+    texto = str(livro)
+
+    assert "Dom Casmurro" in texto
+    assert "Machado" in texto
+    assert "Disponivel" in texto
+
+# Foram adiconadas os testes: test_devolver_livro_emprestado, test_devolver_livro_disponivel, test_str_livro
